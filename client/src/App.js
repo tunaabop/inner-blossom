@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/signup';
 import Login from './pages/login';
-import SingleThought from './pages/SingleThought';
+import SingleJournal from './pages/SingleJournal';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -69,8 +69,8 @@ function App() {
                 element={<Profile />}
               />
               <Route 
-                path="/thoughts/:thoughtId" 
-                element={<SingleThought />}
+                path="/journals/:journalId" 
+                element={<SingleJournal />}
               />
             </Routes>
           </div>
