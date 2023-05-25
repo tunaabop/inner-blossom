@@ -1,7 +1,7 @@
 {
-  "name": "inner-blossom",
+  "name": "programming-thoughts",
   "version": "1.0.0",
-  "description": "## App Description",
+  "description": "",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
@@ -9,17 +9,11 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
-
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tunaabop/inner-blossom.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tunaabop/inner-blossom/issues"
-  },
-  "homepage": "https://github.com/tunaabop/inner-blossom#readme"
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  }
 }

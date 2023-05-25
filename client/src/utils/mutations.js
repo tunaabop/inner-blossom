@@ -23,3 +23,34 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_JOURNAL = gql`
+  mutation addJournal($journalText: String!) {
+    addJournal(journalText: $journalText) {
+      _id
+      journalText
+      journalAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+      }
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($journalId: ID!, $commentText: String!) {
+    addComment(journalId: $journalId, commentText: $commentText) {
+      _id
+      journalText
+      journalAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        createdAt
+      }
+    }
+  }
+`;

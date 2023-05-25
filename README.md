@@ -22,4 +22,3 @@ Inner Blossom is a single-page application (SPA) brewed to provide well-rounded 
 > GitHub [@yasmins021](https://github.com/yasmins021) &nbsp;&middot;&nbsp;
 ### **Jacob Alvarado** ###
 > GitHub [@Sonek0](https://github.com/Sonek0) &nbsp;&middot;&nbsp;
-
