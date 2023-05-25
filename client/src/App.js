@@ -15,6 +15,7 @@ import SingleJournal from './pages/SingleJournal';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Yoga from './pages/Yoga';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -59,6 +60,10 @@ function App() {
               <Route 
                 path="/signup" 
                 element={<Signup />}
+              />
+               <Route 
+                path="/yoga" 
+                element={<Yoga />}
               />
               <Route 
                 path="/me" 
