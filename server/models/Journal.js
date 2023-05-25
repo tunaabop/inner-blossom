@@ -4,7 +4,7 @@ const dateFormat = require('../utils/dateFormat');
 const journalSchema = new Schema({
   journalText: {
     type: String,
-    required: 'You need to leave a thought!',
+    required: 'leave a journal!',
     minlength: 1,
     maxlength: 280,
     trim: true,
@@ -40,6 +40,6 @@ const journalSchema = new Schema({
   // ],
 });
 
-const Journal = model('Journal', thoughtSchema);
+const Journal = model('Journal', journalSchema);
 
 module.exports = Journal;
