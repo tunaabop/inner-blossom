@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Yoga from './pages/Yoga';
+import Affirmations from './pages/Affirmations';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -64,6 +65,10 @@ function App() {
                <Route 
                 path="/yoga" 
                 element={<Yoga />}
+              />
+               <Route 
+                path="/affirmations" 
+                element={<Affirmations />}
               />
               <Route 
                 path="/me" 
