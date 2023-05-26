@@ -38,7 +38,7 @@ const JournalForm = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addJournal({
+      await addJournal({
         variables: {
           journalText,
           journalAuthor: Auth.getProfile().data.username,
@@ -54,7 +54,7 @@ const JournalForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'journalText' && value.length <= 280) {
+    if (name === 'journalText' && value.length <= 2800) {
       setJournalText(value);
       setCharacterCount(value.length);
     }
@@ -62,16 +62,16 @@ const JournalForm = () => {
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
+      <h3>What's on your mind?</h3>
 
       {Auth.loggedIn() ? (
         <>
           <p
             className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
+              characterCount === 2800 || error ? 'text-danger' : ''
             }`}
           >
-            Character Count: {characterCount}/280
+            Character Count: {characterCount}/2800
           </p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
@@ -80,6 +80,7 @@ const JournalForm = () => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="JournalText"
+                input type="text"
                 placeholder="Here's a new journal entry..."
                 value={journalText}
                 className="form-input w-100"
