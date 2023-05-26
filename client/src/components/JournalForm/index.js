@@ -38,7 +38,7 @@ const JournalForm = () => {
     event.preventDefault();
 
     try {
-      await addJournal({
+      const { data } = await addJournal({
         variables: {
           journalText,
           journalAuthor: Auth.getProfile().data.username,
@@ -57,6 +57,8 @@ const JournalForm = () => {
     if (name === 'journalText' && value.length <= 2800) {
       setJournalText(value);
       setCharacterCount(value.length);
+
+      console.log('Textarea value:', value); // Debug message
     }
   };
 
@@ -79,13 +81,13 @@ const JournalForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="JournalText"
-                input type="text"
-                placeholder="Here's a new journal entry..."
+                name="journalText"
+                placeholder="Just start typing..."
                 value={journalText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
+                tabIndex="0"
               ></textarea>
             </div>
 

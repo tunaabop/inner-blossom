@@ -4,9 +4,9 @@ const dateFormat = require('../utils/dateFormat');
 const journalSchema = new Schema({
   journalText: {
     type: String,
-    required: 'leave a journal!',
+    required: 'leave a note',
     minlength: 1,
-    maxlength: 280,
+    maxlength: 2800,
     trim: true,
   },
   journalAuthor: {
@@ -19,25 +19,25 @@ const journalSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  // comments: [
-  //   {
-  //     commentText: {
-  //       type: String,
-  //       required: true,
-  //       minlength: 1,
-  //       maxlength: 280,
-  //     },
-  //     commentAuthor: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     createdAt: {
-  //       type: Date,
-  //       default: Date.now,
-  //       get: (timestamp) => dateFormat(timestamp),
-  //     },
-  //   },
-  // ],
+  comments: [
+    {
+      commentText: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 280,
+      },
+      commentAuthor: {
+        type: String,
+        required: true,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+        get: (timestamp) => dateFormat(timestamp),
+      },
+    },
+  ],
 });
 
 const Journal = model('Journal', journalSchema);
