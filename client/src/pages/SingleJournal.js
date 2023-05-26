@@ -49,7 +49,7 @@ const SingleJournal = () => {
         <CommentList comments={journal.comments} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm journal={journal._id} />
+        <CommentForm journalId={journal._id} />
       </div>
     </div>
   );
