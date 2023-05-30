@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import JournalEditForm from '../JournalEditForm';
-import {REMOVE_JOURNAL, UPDATE_JOURNAL } from '../../utils/mutations';
+import { REMOVE_JOURNAL, UPDATE_JOURNAL } from '../../utils/mutations';
 
 const JournalList = ({
   journals,
@@ -14,11 +14,12 @@ const JournalList = ({
   const [editingJournalId, setEditingJournalId] = useState(null);
   const [deleteJournal] = useMutation(REMOVE_JOURNAL);
   const [updateJournal] = useMutation(UPDATE_JOURNAL);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleDelete = async (id) => {
     try {
       await deleteJournal({
-        variables: { journalId: id  },
+        variables: { journalId: id },
       });
 
       // Update the journalList state by removing the deleted entry
@@ -45,7 +46,6 @@ const JournalList = ({
         },
       });
 
-      // Update the journalList state by replacing the old journal entry with the updated one
       setJournalList(
         journalList.map((journal) =>
           journal._id === data.updateJournal._id ? data.updateJournal : journal
@@ -53,6 +53,14 @@ const JournalList = ({
       );
 
       setEditingJournalId(null);
+
+      // Set the state to show the success message
+      setShowSuccessMessage(true);
+
+      setTimeout(() => {
+        // Reset the state to hide the success message after 3 seconds
+        setShowSuccessMessage(false);
+      }, 3000);
     } catch (error) {
       console.error('Failed to update journal entry', error);
     }
@@ -64,6 +72,9 @@ const JournalList = ({
 
   return (
     <div>
+      {showSuccessMessage && (
+        <div className="success-message">Journal entry updated successfully!</div>
+      )}
       {showTitle && <h3>{title}</h3>}
       {journalList.map((journal) => (
         <div key={journal._id} className="card mb-3">

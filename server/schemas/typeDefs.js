@@ -44,6 +44,7 @@ const typeDefs = gql`
     addComment(journalId: ID!, commentText: String!): Journal
     removeJournal(journalId: ID!): Journal
     removeComment(journalId: ID!, commentId: ID!): Journal
+    updateJournal(journalId: ID!, journalText: String!): Journal
   }
 `;
 

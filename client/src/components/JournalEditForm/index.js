@@ -1,31 +1,59 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, gql } from '@apollo/client';
 
-import { UPDATE_JOURNAL } from '../../utils/mutations';
-import { QUERY_JOURNALS } from '../../utils/queries';
+const UPDATE_JOURNAL = gql`
+  mutation UpdateJournal($journalId: ID!, $journalText: String!) {
+    updateJournal(journalId: $journalId, journalText: $journalText) {
+      _id
+      journalText
+    }
+  }
+`;
+
+const QUERY_JOURNALS = gql`
+  query GetJournals {
+    journals {
+      _id
+      journalText
+    }
+  }
+`;
 
 const JournalEditForm = ({ journal, onCancel }) => {
-  // State for the edited journal text
   const [journalText, setJournalText] = useState(journal.journalText);
 
-  // Mutation hook for updating the journal entry
   const [updateJournal] = useMutation(UPDATE_JOURNAL);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      await updateJournal({
+      const { data } = await updateJournal({
         variables: {
           journalId: journal._id,
           journalText,
         },
-        refetchQueries: [{ query: QUERY_JOURNALS }],
+        update: (cache, { data }) => {
+          try {
+            const { journals } = cache.readQuery({ query: QUERY_JOURNALS });
+            const updatedJournal = data.updateJournal;
+            const updatedJournals = journals.map((j) =>
+              j._id === updatedJournal._id ? updatedJournal : j
+            );
+            cache.writeQuery({
+              query: QUERY_JOURNALS,
+              data: { journals: updatedJournals },
+            });
+          } catch (error) {
+            // Handle case when cache.readQuery returns null
+            console.error('Failed to read or update journal cache', error);
+          }
+        },
       });
 
       onCancel();
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error('Failed to update journal entry', error);
     }
   };
 

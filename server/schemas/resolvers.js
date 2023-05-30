@@ -114,6 +114,20 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    updateJournal: async (parent, { journalId, journalText }, context) => {
+      if (context.user) {
+        return Journal.findOneAndUpdate(
+          { _id: journalId, journalAuthor: context.user.username },
+          { journalText },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
+    
   },
 };
 
