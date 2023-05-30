@@ -10,6 +10,10 @@ Inner Blossom is a single-page application (SPA) brewed to provide well-rounded 
 - MongoDB and the Mongoose ODM (database)
 - Heroku (deployment)
 
+## Credits
+- Yoga images from <a href="https://www.verywellfit.com/essential-yoga-poses-for-beginners-3566747">Very Well Fit</a>
+- Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a>
+
 ## Our Team
 
 ### **Tina Wang** ###
