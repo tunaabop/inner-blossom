@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 import JournalEditForm from '../JournalEditForm';
+import {REMOVE_JOURNAL, UPDATE_JOURNAL } from '../../utils/mutations';
 
 const JournalList = ({
   journals,
@@ -10,13 +12,20 @@ const JournalList = ({
 }) => {
   const [journalList, setJournalList] = useState(journals);
   const [editingJournalId, setEditingJournalId] = useState(null);
+  const [deleteJournal] = useMutation(REMOVE_JOURNAL);
+  const [updateJournal] = useMutation(UPDATE_JOURNAL);
 
-  const handleDelete = (id) => {
-    // Perform the deletion logic here
-    // You can make an API request to your backend to delete the journal entry with the given ID
+  const handleDelete = async (id) => {
+    try {
+      await deleteJournal({
+        variables: { journalId: id  },
+      });
 
-    // Update the journalList state by removing the deleted entry
-    setJournalList(journalList.filter((journal) => journal._id !== id));
+      // Update the journalList state by removing the deleted entry
+      setJournalList(journalList.filter((journal) => journal._id !== id));
+    } catch (error) {
+      console.error('Failed to delete journal entry', error);
+    }
   };
 
   const handleEdit = (id) => {
@@ -27,18 +36,26 @@ const JournalList = ({
     setEditingJournalId(null);
   };
 
-  const handleSaveEdit = (updatedJournal) => {
-    // Perform the update logic here
-    // You can make an API request to your backend to update the journal entry
+  const handleSaveEdit = async (updatedJournal) => {
+    try {
+      const { data } = await updateJournal({
+        variables: {
+          id: updatedJournal._id,
+          journalText: updatedJournal.journalText,
+        },
+      });
 
-    // Update the journalList state by replacing the old journal entry with the updated one
-    setJournalList(
-      journalList.map((journal) =>
-        journal._id === updatedJournal._id ? updatedJournal : journal
-      )
-    );
+      // Update the journalList state by replacing the old journal entry with the updated one
+      setJournalList(
+        journalList.map((journal) =>
+          journal._id === data.updateJournal._id ? data.updateJournal : journal
+        )
+      );
 
-    setEditingJournalId(null);
+      setEditingJournalId(null);
+    } catch (error) {
+      console.error('Failed to update journal entry', error);
+    }
   };
 
   if (!journalList.length) {
@@ -56,15 +73,14 @@ const JournalList = ({
                 className="text-light"
                 to={`/profiles/${journal.journalAuthor}`}
               >
-                {journal.journalAuthor} <br />
                 <span style={{ fontSize: '1rem' }}>
-                  had this journal on {journal.createdAt}
+                  Entry created on {journal.createdAt}
                 </span>
               </Link>
             ) : (
               <>
                 <span style={{ fontSize: '1rem' }}>
-                  You had this thought on {journal.createdAt}
+                  Entry created on {journal.createdAt}
                 </span>
               </>
             )}
@@ -72,12 +88,6 @@ const JournalList = ({
           <div className="card-body bg-light p-2">
             <p>{journal.journalText}</p>
           </div>
-          <Link
-            className="btn btn-primary btn-block btn-squared"
-            to={`/journals/${journal._id}`}
-          >
-            Join the discussion on this thought.
-          </Link>
           <button
             className="btn btn-danger btn-block btn-squared"
             onClick={() => handleDelete(journal._id)}

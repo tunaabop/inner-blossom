@@ -75,3 +75,20 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const DELETE_JOURNAL = gql`
+  mutation deleteJournal($id: ID!) {
+    deleteJournal(id: $id)
+  }
+`;
+
+export const GET_JOURNALS = gql`
+  query getJournals {
+    journals {
+      _id
+      journalText
+      createdAt
+      journalAuthor
+    }
+  }
+`;

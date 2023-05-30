@@ -11,7 +11,7 @@ import Auth from '../../utils/auth';
 const JournalForm = ({ journalToEdit, onCancel }) => {
   // State for journal text and character count
   const [journalText, setJournalText] = useState(journalToEdit?.journalText || '');
-  const [characterCount, setCharacterCount] = useState(journalToEdit?.journalText.length || 0);
+  const [characterCount, setCharacterCount] = useState(journalToEdit?.journalText.length ?? 0);
 
   // Mutation hooks for adding and updating journal entries
   const [addJournal] = useMutation(ADD_JOURNAL, {

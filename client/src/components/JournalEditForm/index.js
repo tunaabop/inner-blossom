@@ -51,9 +51,9 @@ const JournalEditForm = ({ journal, onCancel }) => {
         <button className="btn btn-primary" type="submit">
           Save Changes
         </button>
-        {/* <button className="btn btn-secondary ml-2" type="button" onClick={onCancel}>
+        <button className="btn btn-secondary ml-2" type="button" onClick={onCancel}>
           Cancel
-        </button> */}
+        </button>
       </form>
     </div>
   );

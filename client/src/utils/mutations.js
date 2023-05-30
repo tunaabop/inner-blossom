@@ -31,13 +31,10 @@ export const ADD_JOURNAL = gql`
       journalText
       journalAuthor
       createdAt
-      comments {
-        _id
-        commentText
-      }
     }
   }
 `;
+
 
 export const UPDATE_JOURNAL = gql`
   mutation updateJournal($journalId: ID!, $journalText: String!) {
@@ -46,13 +43,10 @@ export const UPDATE_JOURNAL = gql`
       journalText
       journalAuthor
       createdAt
-      comments {
-        _id
-        commentText
-      }
     }
   }
 `;
+
 
 
 export const REMOVE_JOURNAL = gql`
@@ -62,16 +56,9 @@ export const REMOVE_JOURNAL = gql`
       journalText
       journalAuthor
       createdAt
-      comments {
-        _id
-        commentText
-      }
     }
   }
 `;
-
-
-
 
 
 export const ADD_COMMENT = gql`
@@ -81,11 +68,6 @@ export const ADD_COMMENT = gql`
       journalText
       journalAuthor
       createdAt
-      comments {
-        _id
-        commentText
-        createdAt
-      }
     }
   }
 `;
