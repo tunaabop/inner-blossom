@@ -39,6 +39,41 @@ export const ADD_JOURNAL = gql`
   }
 `;
 
+export const UPDATE_JOURNAL = gql`
+  mutation updateJournal($journalId: ID!, $journalText: String!) {
+    updateJournal(journalId: $journalId, journalText: $journalText) {
+      _id
+      journalText
+      journalAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+      }
+    }
+  }
+`;
+
+
+export const REMOVE_JOURNAL = gql`
+  mutation removeJournal($journalId: ID!) {
+    removeJournal(journalId: $journalId) {
+      _id
+      journalText
+      journalAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+      }
+    }
+  }
+`;
+
+
+
+
+
 export const ADD_COMMENT = gql`
   mutation addComment($journalId: ID!, $commentText: String!) {
     addComment(journalId: $journalId, commentText: $commentText) {

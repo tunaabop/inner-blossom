@@ -43,6 +43,23 @@ export const QUERY_SINGLE_JOURNAL = gql`
   }
 `;
 
+export const QUERY_ME_BASIC = gql`
+  { 
+    me {
+      _id
+      username
+      email
+      journals {
+        _id
+        journalText
+        journalAuthor
+        createdAt
+      }
+    }
+  }
+`;
+
+
 export const QUERY_ME = gql`
   query me {
     me {
