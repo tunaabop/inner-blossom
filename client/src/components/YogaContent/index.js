@@ -1,38 +1,38 @@
-// import React, { useEffect, useState } from "react";
+//code below will be used for the yoga component
 
-// const YogaContent = () => {
-//   const [yoga, setYoga] = useState([]);
 
-//   //fetch the api
-//   const fetchData = async () => {
-//     const response = await fetch("");
-//     const data = await response.json();
-//     setYoga(data);
-//   };
+// import React, { useState } from 'react';
 
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
+// const images = ['cat-cow.PNG', 'childs-pose.PNG', 'cobblers pose.PNG', 'cobra pose.PNG', 'corpse pose.PNG', 'Downward dog.PNG', 'half forward bend.PNG', 'half lord of the fishes.PNG', 'happy baby.PNG', 'head to knee pose.PNG', 'knee to chest abd chin pose.PNG', 'mountain pose.PNG', 'plank pose.PNG', 'seated forward bend.PNG', 'staff pose.PNG', 'supine spinal twist.PNG', 'tree pose.PNG', 'warrior 1.PNG', 'wide angle straddle.PNG' ];
+// const usedImages = [];
 
-//   //returns the yoga pose image
+// function getRandomImage() {
+//   if (images.length === 0) {
+//     images.push(...usedImages);
+//     usedImages.length = 0;
+//   }
+
+//   const index = Math.floor(Math.random() * images.length);
+//   const image = images[index];
+//   images.splice(index, 1);
+//   usedImages.push(image);
+//   return image;
+// }
+
+// function ImageContainer() {
+//   const [imageSrc, setImageSrc] = useState('');
+
+//   function loadImage() {
+//     const image = getRandomImage();
+//     setImageSrc(require(`./images${image}`).default);
+//   }
+
 //   return (
 //     <div>
-//       <h1>Yoga Poses</h1>
-//       <ul>
-//         {poses.map((item) => (
-//           <li key={item.id}>
-//             <img src={item.image} alt={item.name} />
-//           </li>
-//         ))}
-//       </ul>
+//       <img src={imageSrc} alt="Random Image" />
+//       <button onClick={loadImage}>Load Image</button>
 //     </div>
 //   );
-// };
+// }
 
-// export default YogaContent;
-
-// var myPix = new Array("images/lion.jpg","images/tiger.jpg","images/bear.jpg");
-
-// function choosePic() {
-//      var randomNum = Math.floor(Math.random() * myPix.length);
-//      document.getElementById("myPicture").src = myPix[randomNum];
+// export default ImageContainer;
