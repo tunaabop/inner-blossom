@@ -2,6 +2,8 @@
 
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
 const images = ['cat-cow.PNG', 'childs-pose.PNG', 'cobblers-pose.PNG', 'cobra-pose.PNG', 'corpse-pose.PNG', 'Downward-dog.PNG', 'half-forward-bend.PNG', 'half-lord-of-the-fishes.PNG', 'happy-baby.PNG', 'head-to-knee-pose.PNG', 'knee-chest-and-chin-pose.PNG', 'mountain-pose.PNG', 'plank-pose.PNG', 'seated-forward-bend.PNG', 'staff-pose.PNG', 'supine-spinal-twist.PNG', 'tree-pose.PNG', 'warrior1.PNG', 'wide-angle-straddle.PNG' ];
 const usedImages = [];
@@ -32,8 +34,17 @@ function YogaContent() {
 //button
   return (
     <div>
+      {Auth.loggedIn() ? (
+         <>
       <img src={imageSrc} alt="Random Image" />
       <button className="btn btn-lg btn-info m-2" onClick={loadImage}>Load Image</button>
+    </>
+      ) : (
+          <p>
+            You need to be logged in. Please{' '}
+            <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+          </p>
+        )}
     </div>
   );
 }
