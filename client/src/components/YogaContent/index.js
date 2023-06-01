@@ -20,7 +20,7 @@ function getRandomImage() {
   return image;
 }
 //the generator
-function ImageContainer() {
+function YogaContent() {
   const [imageSrc, setImageSrc] = useState('');
 
   function loadImage() {
@@ -36,4 +36,4 @@ function ImageContainer() {
   );
 }
 
-export default ImageContainer;
+export default YogaContent;
