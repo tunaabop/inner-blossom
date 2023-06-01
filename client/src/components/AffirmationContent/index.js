@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import { faHeart, faHeartO } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fortawesome/fontawesome-free/css/all.css";
-
 
 const AffirmationContent = () => {
   const [quote, setQuote] = useState(null);
@@ -20,19 +17,55 @@ const AffirmationContent = () => {
 
   useEffect(() => {
     fetchData();
-    const storedFavorites = localStorage.getItem("favorites");
-    if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
-    }
+    fetch("/api/favorites")
+      .then((response) => response.json())
+      .then((data) => {
+        setFavorites(data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch favorites", error);
+      });
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
-
   const addToFavorites = () => {
-    setFavorites([...favorites, quote]);
+    fetch("/api/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(quote),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setFavorites([...favorites, data]);
+      })
+      .catch((error) => {
+        console.error("Failed to add to favorites", error);
+      });
   };
+
+  const removeFromFavorites = (quote) => {
+    fetch("/api/favorites", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(quote),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        const updatedFavorites = favorites.filter((q) => q.q !== quote.q);
+        setFavorites(updatedFavorites);
+      })
+      .catch((error) => {
+        console.error("Failed to remove from favorites", error);
+      });
+  };
+
+  const isFavorite = (quote) => {
+    return quote && favorites.some((q) => q.q === quote.q);
+  };
+  
 
   return (
     <div>
@@ -42,9 +75,18 @@ const AffirmationContent = () => {
         </h4>
         <p>"{quote ? quote.q : ""}"</p>
         <p>- {quote ? quote.a : ""}</p>
-        <button className="favorite-btn" onClick={addToFavorites}>
-          <i className="fa fa-heart"></i>
-        </button>
+        {isFavorite(quote) ? (
+          <button
+            className="favorite-btn"
+            onClick={() => removeFromFavorites(quote)}
+          >
+            <i className="fa fa-heart"></i>
+          </button>
+        ) : (
+          <button className="favorite-btn" onClick={addToFavorites}>
+            <i className="fa fa-heart-o"></i>
+          </button>
+        )}
       </div>
       <div>
         <h4 className="card-header bg-primary text-light p-2 m-0">
@@ -54,6 +96,12 @@ const AffirmationContent = () => {
           <div key={index} className="card mb-3">
             <p>"{quote.q}"</p>
             <p>- {quote.a}</p>
+            <button
+              className="favorite-btn"
+              onClick={() => removeFromFavorites(quote)}
+            >
+              <i className="fa fa-heart"></i>
+            </button>
           </div>
         ))}
       </div>
