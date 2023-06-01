@@ -25,7 +25,7 @@ function YogaContent() {
 
   function loadImage() {
     const image = getRandomImage();
-    setImageSrc(require(`./images${image}`).default);
+    setImageSrc(require(`../../images/${image}`));
   }
 //button
   return (
