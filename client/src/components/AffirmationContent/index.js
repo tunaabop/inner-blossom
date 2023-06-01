@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import "@fortawesome/fontawesome-free/css/all.css";
 
 const AffirmationContent = () => {
   const [quote, setQuote] = useState(null);
@@ -65,7 +64,6 @@ const AffirmationContent = () => {
   const isFavorite = (quote) => {
     return quote && favorites.some((q) => q.q === quote.q);
   };
-  
 
   return (
     <div>
@@ -80,11 +78,25 @@ const AffirmationContent = () => {
             className="favorite-btn"
             onClick={() => removeFromFavorites(quote)}
           >
-            <i className="fa fa-heart"></i>
+            <span
+              className="emoji"
+              role="img"
+              aria-label="heart"
+              aria-hidden="false"
+            >
+              ❤️
+            </span>
           </button>
         ) : (
           <button className="favorite-btn" onClick={addToFavorites}>
-            <i className="fa fa-heart"></i>
+            <span
+              className="emoji"
+              role="img"
+              aria-label="heart"
+              aria-hidden="false"
+            >
+              ❤️
+            </span>
           </button>
         )}
       </div>
@@ -100,7 +112,14 @@ const AffirmationContent = () => {
               className="favorite-btn"
               onClick={() => removeFromFavorites(quote)}
             >
-              <i className="fa fa-heart"></i>
+              <span
+                className="emoji"
+                role="img"
+                aria-label="heart"
+                aria-hidden="false"
+              >
+                ❤️
+              </span>
             </button>
           </div>
         ))}
