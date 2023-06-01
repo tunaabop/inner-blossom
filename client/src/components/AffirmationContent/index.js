@@ -84,7 +84,7 @@ const AffirmationContent = () => {
           </button>
         ) : (
           <button className="favorite-btn" onClick={addToFavorites}>
-            <i className="fa fa-heart-o"></i>
+            <i className="fa fa-heart"></i>
           </button>
         )}
       </div>
