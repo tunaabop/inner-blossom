@@ -33,7 +33,7 @@ function YogaContent() {
   return (
     <div>
       <img src={imageSrc} alt="Random Image" />
-      <button onClick={loadImage}>Load Image</button>
+      <button className="btn btn-lg btn-info m-2" onClick={loadImage}>Load Image</button>
     </div>
   );
 }

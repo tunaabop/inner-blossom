@@ -100,7 +100,7 @@ const JournalList = ({
             <p>{journal.journalText}</p>
           </div>
           <button
-            className="btn btn-danger btn-block btn-squared"
+            className="btn btn-lg btn-info m-2"
             onClick={() => handleDelete(journal._id)}
           >
             Delete
@@ -113,7 +113,7 @@ const JournalList = ({
             />
           ) : (
             <button
-              className="btn btn-secondary btn-block btn-squared"
+              className="btn btn-lg  m-2"
               onClick={() => handleEdit(journal._id)}
             >
               Edit
