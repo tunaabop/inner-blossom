@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+ import '../styles/login.css';
 
 import Auth from '../utils/auth';
 
@@ -43,18 +44,18 @@ const Login = (props) => {
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
+        <div className="card-login">
+          <h4 className="card-header-login bg-dark  p-2">welcome to Inner Blossom, the app for mental well-being </h4>
+          <div className="card-body-login align-center ">
             {data ? (
               <p>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form onSubmit={handleFormSubmit} className="row m-5 justify-center">
                 <input
-                  className="form-input"
+                  className="form-input-login"
                   placeholder="Your email"
                   name="email"
                   type="email"
@@ -62,8 +63,8 @@ const Login = (props) => {
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
-                  placeholder="******"
+                  className="form-input-login"
+                  placeholder="Password"
                   name="password"
                   type="password"
                   value={formState.password}
@@ -77,7 +78,9 @@ const Login = (props) => {
                   Submit
                 </button>
               </form>
+              
             )}
+            
 
             {error && (
               <div className="my-3 p-3 bg-danger text-white">
