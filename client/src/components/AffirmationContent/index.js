@@ -71,8 +71,8 @@ const AffirmationContent = () => {
         <h4 className="card-header bg-primary text-light p-2 m-0">
           Your inspirational quote of the day is:
         </h4>
-        <p>"{quote ? quote.q : ""}"</p>
-        <p>- {quote ? quote.a : ""}</p>
+        <p style={{ fontWeight: 'bold' }}>"{quote ? quote.q : ""}"</p>
+        <p style={{ fontWeight: 'bold' }}>- {quote ? quote.a : ""}</p>
         {isFavorite(quote) ? (
           <button
             className="favorite-btn"
@@ -106,8 +106,8 @@ const AffirmationContent = () => {
         </h4>
         {favorites.map((quote, index) => (
           <div key={index} className="card mb-3">
-            <p>"{quote.q}"</p>
-            <p>- {quote.a}</p>
+            <p style={{ fontWeight: 'bold' }}>"{quote.q}"</p>
+            <p style={{ fontWeight: 'bold' }}>- {quote.a}</p>
             <button
               className="favorite-btn"
               onClick={() => removeFromFavorites(quote)}
