@@ -15,7 +15,7 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4>
+        {/* <h4>
           Made with{' '}
           <span
             className="emoji"
@@ -26,7 +26,7 @@ const Footer = () => {
             ❤️
           </span>{' '}
           by Tina, Rachel, Jacob, Sophia, and Yasmin
-        </h4>
+        </h4> */}
       </div>
     </footer>
   );

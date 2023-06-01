@@ -1,4 +1,4 @@
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css
 /* Document
    ========================================================================== */
 /**
@@ -18,7 +18,8 @@ html {
  * Remove the margin in all browsers.
  */
 body {
-  margin: 0;
+  margin: 0; 
+  background-color: #c3ded6;
 }
 
 /**
@@ -369,7 +370,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'JetBrains Mono', monospace;
+  font-family:Arial, Helvetica, sans-serif;
   margin: 0 0 0.5rem;
   line-height: 1.25;
 }
@@ -388,6 +389,7 @@ h3 {
 
 h4 {
   font-size: 1.5rem;
+  
 }
 
 h5 {
@@ -932,11 +934,11 @@ a:hover {
 }
 
 .bg-light {
-  background-color: #d9e9e8 !important;
+  background-color: black !important;
 }
 
 .bg-dark {
-  background-color: #1a1a1a !important;
+  background-color:#c3ded6 !important;
 }
 
 .bg-white {
@@ -982,7 +984,7 @@ a:hover {
   border-radius: 0.3rem;
   border: 1px solid transparent;
   outline: none;
-  color: #1a1a1a;
+  color: #fce0d8;
   background-color: #aeaeae;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
@@ -1012,12 +1014,12 @@ a:hover {
 }
 
 .btn.btn-primary {
-  background-color: #2d3e50;
-  color: #d9e9e8;
+  background-color: #fce0d8;
+  color: #c8573b;
 }
 
 .btn.btn-primary:hover {
-  background-color: #57779a;
+  background-color: #e4b3a5;
 }
 
 .btn.btn-danger {
@@ -1075,33 +1077,36 @@ a:hover {
 }
 
 .btn.btn-link {
-  background-color: #1b89bc;
+  background-color: pink;
   color: #ffffff;
 }
 
 .btn.btn-link:hover {
-  background-color: #31a9e1;
+  background-color: pink;
 }
 
 .card {
-  border: 1px solid #1a1a1a;
-  margin-bottom: 1rem;
+   border: 1px solid #1a1a1a;
+  margin-bottom: 1rem; 
 }
 
 .card .card-header {
   padding: 0.375rem;
-  background-color: #2d3e50;
-  color: #d9e9e8;
+  background-color: ;
+   color: #d9e9e8; 
 }
 
 .card .card-body {
-  padding: 0.375rem;
+  
+  /* padding: 0.375rem;  */
+  background-color:#c4ddd7;
 }
 
 .card .card-footer {
-  border-top: 1px solid #1a1a1a;
+   border-top: 1px solid black; 
   padding: 0.375rem;
 }
+
 
 .card.card-rounded {
   border-radius: 0.3rem;
@@ -1112,7 +1117,8 @@ a:hover {
 }
 
 form {
-  width: 100%;
+  margin-top: 80px;
+  width: 70%;
 }
 
 form .form-group {
@@ -1145,11 +1151,11 @@ form .form-label {
 form .form-input {
   width: 100%;
   padding: 0.75rem;
-  color: #1a1a1a;
-  background-color: #ffffff;
+  color: #ca735b;
+  background-color: #ecf8f4;
   margin: 0.625rem 0;
   font-size: 1.2rem;
-  border: 1px solid #484848;
+  border: 1px solid #ca735b ;
   border-radius: 0.3rem;
 }
 
@@ -1168,7 +1174,7 @@ label form [type='radio'] {
 }
 
 .container {
-  width: 85%;
+  width: 75%;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -1424,6 +1430,15 @@ label form [type='radio'] {
   .align-content-center-sm {
     align-content: center;
   }
+
+
+
+
+
+
+
+
+
 }
 
 /* col-md */
