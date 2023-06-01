@@ -19,7 +19,10 @@ html {
  */
 body {
   margin: 0; 
-  background-color: #c3ded6;
+  /* background-color: #c3ded6; */
+  background-image: url('../images/blossom.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /**
@@ -362,6 +365,7 @@ body {
     'Segoe UI Symbol';
   font-size: 16px;
   color: #1a1a1a;
+  background-image: '../images/blossom.png';
 }
 
 h1,
@@ -884,8 +888,8 @@ a:hover {
   text-align: right !important;
 }
 
-.text-primary {
-  color: #2d3e50 !important;
+/* .text-primary {
+  color: #ffffff !important;
 }
 
 .text-info {
@@ -901,20 +905,20 @@ a:hover {
 }
 
 .text-light {
-  color: #d9e9e8 !important;
-}
+  color: #1bbc9b !important;
+} */
 
-.text-dark {
+/* .text-dark {
   color: #1a1a1a !important;
-}
+} */
 
-.text-white {
+/* .text-white {
   color: #ffffff !important;
-}
+} */
 
-.text-black {
+/* .text-black {
   color: #000000 !important;
-}
+} */
 
 .text-link {
   color: #1b89bc !important;
@@ -922,7 +926,9 @@ a:hover {
 
 /* BACKGROUND UTILS */
 .bg-primary {
-  background-color: #2d3e50 !important;
+  /* background-color: #c4ddd7!important; */
+  color:#000000;
+  
 }
 
 .bg-info {
@@ -934,11 +940,12 @@ a:hover {
 }
 
 .bg-light {
-  background-color: black !important;
+  background-color:#fce0d8 !important;
+  color:#000000 !important;
 }
 
 .bg-dark {
-  background-color:#c3ded6 !important;
+  background-color:#1bbc9b !important;
 }
 
 .bg-white {
@@ -1023,7 +1030,7 @@ a:hover {
 }
 
 .btn.btn-danger {
-  background-color: #e64c66;
+  background-color: #1bbc9b;
   color: #ffffff;
 }
 

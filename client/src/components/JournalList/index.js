@@ -78,10 +78,10 @@ const JournalList = ({
       {showTitle && <h3>{title}</h3>}
       {journalList.map((journal) => (
         <div key={journal._id} className="card mb-3">
-          <h4 className="card-header bg-primary text-light p-2 m-0">
+          <h4 className=" bg-primary bg-primary p-2 m-0">
             {showUsername ? (
               <Link
-                className="text-light"
+                className="bg-primary"
                 to={`/profiles/${journal.journalAuthor}`}
               >
                 <span style={{ fontSize: '1rem' }}>
