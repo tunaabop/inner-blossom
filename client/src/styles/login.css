@@ -30,7 +30,7 @@
   
   .card-header-login {
     background-color: #343a40;
-    color:brown;
+    /* color:brown; */
     text-align: center;
     padding: 0.5rem 1rem;
   }

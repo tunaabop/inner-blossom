@@ -45,7 +45,7 @@ const Login = (props) => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="card-login">
-          <h4 className="card-header-login bg-dark  p-2">welcome to Inner Blossom, the app for mental well-being </h4>
+          <h4 className="card-header-login bg-dark  p-2">Welcome to Inner Blossom, the app for mental well-being </h4>
           <div className="card-body-login align-center ">
             {data ? (
               <p>
