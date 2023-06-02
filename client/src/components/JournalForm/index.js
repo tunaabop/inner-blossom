@@ -15,26 +15,26 @@ const JournalForm = ({ journalToEdit, onCancel }) => {
 
   // Mutation hooks for adding and updating journal entries
   const [addJournal] = useMutation(ADD_JOURNAL, {
-    update(cache, { data: { addJournal } }) {
-      // Update the cache after adding a journal entry
-      try {
-        const { journals } = cache.readQuery({ query: QUERY_JOURNALS });
+    // update(cache, { data: { addJournal } }) {
+    //   // Update the cache after adding a journal entry
+    //   try {
+    //     const { journals } = cache.readQuery({ query: QUERY_JOURNALS });
 
-        cache.writeQuery({
-          query: QUERY_JOURNALS,
-          data: { journals: [addJournal, ...journals] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
+    //     cache.writeQuery({
+    //       query: QUERY_JOURNALS,
+    //       data: { journals: [addJournal, ...journals] },
+    //     });
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
 
-      // Update the cache for the "me" query
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, journals: [...me.journals, addJournal] } },
-      });
-    },
+    //   // Update the cache for the "me" query
+    //   const { me } = cache.readQuery({ query: QUERY_ME });
+    //   cache.writeQuery({
+    //     query: QUERY_ME,
+    //     data: { me: { ...me, journals: [...me.journals, addJournal] } },
+    //   });
+    // },
   });
 
   const [updateJournal] = useMutation(UPDATE_JOURNAL);

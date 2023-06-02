@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
-
+import { QUERY_JOURNALS } from '../../utils/queries';
 const UPDATE_JOURNAL = gql`
   mutation UpdateJournal($journalId: ID!, $journalText: String!) {
     updateJournal(journalId: $journalId, journalText: $journalText) {
@@ -10,14 +10,14 @@ const UPDATE_JOURNAL = gql`
   }
 `;
 
-const QUERY_JOURNALS = gql`
-  query GetJournals {
-    journals {
-      _id
-      journalText
-    }
-  }
-`;
+// const QUERY_JOURNALS = gql`
+//   query GetJournals {
+//     journals {
+//       _id
+//       journalText
+//     }
+//   }
+// `;
 
 const JournalEditForm = ({ journal, onCancel }) => {
   const [journalText, setJournalText] = useState(journal.journalText);
@@ -35,6 +35,8 @@ const JournalEditForm = ({ journal, onCancel }) => {
         },
         update: (cache, { data }) => {
           try {
+            console.log("cache: ", cache);
+            console.log("cache read query",cache.readQuery({ query: QUERY_JOURNALS }));
             const { journals } = cache.readQuery({ query: QUERY_JOURNALS });
             const updatedJournal = data.updateJournal;
             const updatedJournals = journals.map((j) =>

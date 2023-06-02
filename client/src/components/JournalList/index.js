@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import JournalEditForm from '../JournalEditForm';
 import { REMOVE_JOURNAL, UPDATE_JOURNAL } from '../../utils/mutations';
-import { QUERY_ME } from '../../utils/queries';
+import { QUERY_JOURNALS, QUERY_ME } from '../../utils/queries';
 
 const JournalList = ({
   journals,
@@ -11,8 +11,8 @@ const JournalList = ({
   showTitle = true,
   showUsername = true,
 }) => {
-  const [journalList, setJournalList] = useState([]);
-
+  
+  const [journalList, setJournalList] = useState(journals);
   useEffect(() => {
     setJournalList(journals);
   }, [journals]);
@@ -21,8 +21,9 @@ const JournalList = ({
   const [deleteJournal] = useMutation(REMOVE_JOURNAL);
   const [updateJournal] = useMutation(UPDATE_JOURNAL);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
+  
   const handleDelete = async (id) => {
+    
     try {
       await deleteJournal({
         variables: { journalId: id },
@@ -34,6 +35,7 @@ const JournalList = ({
     }
   };
 
+ 
   const handleEdit = (id) => {
     setEditingJournalId(id);
   };
@@ -69,9 +71,11 @@ const JournalList = ({
     }
   };
 
+
   if (!journalList.length) {
     return <h3>No Journal Entries Yet</h3>;
   }
+  
 
   return (
     <div>
