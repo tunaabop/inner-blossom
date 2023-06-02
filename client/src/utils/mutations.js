@@ -57,16 +57,6 @@ export const REMOVE_JOURNAL = gql`
   }
 `;
 
-export const ADD_COMMENT = gql`
-  mutation addComment($journalId: ID!, $commentText: String!) {
-    addComment(journalId: $journalId, commentText: $commentText) {
-      _id
-      journalText
-      journalAuthor
-      createdAt
-    }
-  }
-`;
 
 export const ADD_TO_FAVORITES = gql`
   mutation addToFavorites($quote: QuoteInput!) {
