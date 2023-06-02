@@ -3,13 +3,13 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_TO_FAVORITES } from "../../utils/mutations";
-import {QUERY_ME} from "../../utils/queries";
+import { QUERY_ME } from "../../utils/queries";
 
 const AffirmationContent = () => {
   const [quote, setQuote] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [addToFavorites] = useMutation(ADD_TO_FAVORITES);
-const {loading, data} = useQuery(QUERY_ME);
+  const { loading, data } = useQuery(QUERY_ME);
   const fetchData = async () => {
     try {
       const response = await fetch("/api/random");
@@ -53,7 +53,9 @@ const {loading, data} = useQuery(QUERY_ME);
     })
       .then((response) => response.json())
       .then(() => {
-        const updatedFavorites = favorites.filter((q) => q.quote !== quote.quote);
+        const updatedFavorites = favorites.filter(
+          (q) => q.quote !== quote.quote
+        );
         setFavorites(updatedFavorites);
       })
       .catch((error) => {
@@ -71,9 +73,10 @@ const {loading, data} = useQuery(QUERY_ME);
   return (
     <div>
       <div className="card mb-3">
-        <h4 className="card-header bg-primary text-light p-2 m-0">
+        <h4 className="card-header-title  p-2 m-0">
           Your inspirational quote of the day is:
         </h4>
+
         {Auth.loggedIn() ? (
           <>
             <p style={{ fontWeight: "bold" }}>"{quote ? quote.q : ""}"</p>
@@ -115,9 +118,10 @@ const {loading, data} = useQuery(QUERY_ME);
 
       {Auth.loggedIn() && (
         <div>
-          <h4 className="card-header bg-primary text-light p-2 m-0">
+          <h4 className="card-header-title  p-2 m-0">
             Your favorited quotes:
           </h4>
+
           {favorites.map((quote, index) => {
             return (
               <div key={index} className="card mb-3">
@@ -139,6 +143,10 @@ const {loading, data} = useQuery(QUERY_ME);
               </div>
             );
           })}
+          <p>
+            - Inspirational quotes provided by{" "} <a href="https://zenquotes.io/" target="_blank"> ZenQuotes API
+            </a>
+          </p>
         </div>
       )}
     </div>
