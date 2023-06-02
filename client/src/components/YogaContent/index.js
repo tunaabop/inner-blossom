@@ -36,7 +36,7 @@ function YogaContent() {
     <div>
       {Auth.loggedIn() ? (
          <>
-      <img src={imageSrc} alt="Random Image" />
+      <img src={imageSrc}/>
       <button className="btn btn-lg btn-info m-2" onClick={loadImage}>Load Image</button>
     </>
       ) : (
