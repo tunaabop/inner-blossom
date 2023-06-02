@@ -16,7 +16,7 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">Inner Blossom</h1>
           </Link>
-          <p className="m-0">Grow your inner peace</p>
+          <p className="m-0 text-center">Grow your inner peace</p>
         </div>
         <div>
           {Auth.loggedIn() ? (

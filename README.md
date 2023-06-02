@@ -20,8 +20,6 @@ Inner Blossom is a single-page application (SPA) brewed to provide well-rounded 
 > GitHub [@tunaabop](https://github.com/tunaabop) &nbsp;&middot;&nbsp;
 ### **Rachel Schumann** ###
 > GitHub [@raeludwig](https://github.com/raeludwig) &nbsp;&middot;&nbsp;
-### **Sophia Ruiz** ###
-> GitHub [@sophiaaruiz](https://github.com/sophiaruiz) &nbsp;&middot;&nbsp;
 ### **Yasmin Sanchez** ###
 > GitHub [@yasmins021](https://github.com/yasmins021) &nbsp;&middot;&nbsp;
 ### **Jacob Alvarado** ###
