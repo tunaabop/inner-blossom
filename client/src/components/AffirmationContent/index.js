@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import "@fortawesome/fontawesome-free/css/all.css";
+import Auth from '../../utils/auth';
+import { Link } from "react-router-dom";
 
 const AffirmationContent = () => {
   const [quote, setQuote] = useState(null);
@@ -65,7 +66,6 @@ const AffirmationContent = () => {
   const isFavorite = (quote) => {
     return quote && favorites.some((q) => q.q === quote.q);
   };
-  
 
   return (
     <div>
@@ -73,38 +73,71 @@ const AffirmationContent = () => {
         <h4 className="card-header bg-primary text-light p-2 m-0">
           Your inspirational quote of the day is:
         </h4>
-        <p>"{quote ? quote.q : ""}"</p>
-        <p>- {quote ? quote.a : ""}</p>
-        {isFavorite(quote) ? (
-          <button
-            className="favorite-btn"
-            onClick={() => removeFromFavorites(quote)}
-          >
-            <i className="fa fa-heart"></i>
-          </button>
+        {Auth.loggedIn() ? (
+          <>
+            <p style={{ fontWeight: 'bold' }}>"{quote ? quote.q : ""}"</p>
+            <p style={{ fontWeight: 'bold' }}>- {quote ? quote.a : ""}</p>
+            {isFavorite(quote) ? (
+              <button
+                className="favorite-btn"
+                onClick={() => removeFromFavorites(quote)}
+              >
+                <span
+                  className="emoji"
+                  role="img"
+                  aria-label="heart"
+                  aria-hidden="false"
+                >
+                  ❤️
+                </span>
+              </button>
+            ) : (
+              <button className="favorite-btn" onClick={addToFavorites}>
+                <span
+                  className="emoji"
+                  role="img"
+                  aria-label="heart"
+                  aria-hidden="false"
+                >
+                  ❤️
+                </span>
+              </button>
+            )}
+          </>
         ) : (
-          <button className="favorite-btn" onClick={addToFavorites}>
-            <i className="fa fa-heart-o"></i>
-          </button>
+          <p>
+            You need to be logged in to see the affirmations. Please{' '}
+            <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+          </p>
         )}
       </div>
-      <div>
-        <h4 className="card-header bg-primary text-light p-2 m-0">
-          Your favorited quotes:
-        </h4>
-        {favorites.map((quote, index) => (
-          <div key={index} className="card mb-3">
-            <p>"{quote.q}"</p>
-            <p>- {quote.a}</p>
-            <button
-              className="favorite-btn"
-              onClick={() => removeFromFavorites(quote)}
-            >
-              <i className="fa fa-heart"></i>
-            </button>
-          </div>
-        ))}
-      </div>
+
+      {Auth.loggedIn() && (
+        <div>
+          <h4 className="card-header bg-primary text-light p-2 m-0">
+            Your favorited quotes:
+          </h4>
+          {favorites.map((quote, index) => (
+            <div key={index} className="card mb-3">
+              <p style={{ fontWeight: 'bold' }}>"{quote.q}"</p>
+              <p style={{ fontWeight: 'bold' }}>- {quote.a}</p>
+              <button
+                className="favorite-btn"
+                onClick={() => removeFromFavorites(quote)}
+              >
+                <span
+                  className="emoji"
+                  role="img"
+                  aria-label="heart"
+                  aria-hidden="false"
+                >
+                  ❤️
+                </span>
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
