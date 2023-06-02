@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const favoriteSchema = require('./Favorites');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
@@ -25,6 +26,7 @@ const userSchema = new Schema({
       ref: 'Journal',
     },
   ],
+  favorites: [favoriteSchema],
 });
 
 userSchema.pre('save', async function (next) {

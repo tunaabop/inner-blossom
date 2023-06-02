@@ -33,12 +33,6 @@ export const QUERY_SINGLE_JOURNAL = gql`
       journalText
       journalAuthor
       createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-      }
     }
   }
 `;

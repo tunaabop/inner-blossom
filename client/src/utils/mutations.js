@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -35,7 +35,6 @@ export const ADD_JOURNAL = gql`
   }
 `;
 
-
 export const UPDATE_JOURNAL = gql`
   mutation updateJournal($journalId: ID!, $journalText: String!) {
     updateJournal(journalId: $journalId, journalText: $journalText) {
@@ -46,8 +45,6 @@ export const UPDATE_JOURNAL = gql`
     }
   }
 `;
-
-
 
 export const REMOVE_JOURNAL = gql`
   mutation removeJournal($journalId: ID!) {
@@ -61,13 +58,16 @@ export const REMOVE_JOURNAL = gql`
 `;
 
 
-export const ADD_COMMENT = gql`
-  mutation addComment($journalId: ID!, $commentText: String!) {
-    addComment(journalId: $journalId, commentText: $commentText) {
+export const ADD_TO_FAVORITES = gql`
+  mutation addToFavorites($quote: QuoteInput!) {
+    addToFavorites(quote: $quote) {
       _id
-      journalText
-      journalAuthor
-      createdAt
+      username
+      email
+      favorites {
+        quote
+        author
+      }
     }
   }
 `;
