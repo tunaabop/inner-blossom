@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import JournalEditForm from '../JournalEditForm';
 import { REMOVE_JOURNAL, UPDATE_JOURNAL } from '../../utils/mutations';
+import { QUERY_ME } from '../../utils/queries';
 
 const JournalList = ({
   journals,
@@ -10,7 +11,12 @@ const JournalList = ({
   showTitle = true,
   showUsername = true,
 }) => {
-  const [journalList, setJournalList] = useState(journals);
+  const [journalList, setJournalList] = useState([]);
+
+  useEffect(() => {
+    setJournalList(journals);
+  }, [journals]);
+
   const [editingJournalId, setEditingJournalId] = useState(null);
   const [deleteJournal] = useMutation(REMOVE_JOURNAL);
   const [updateJournal] = useMutation(UPDATE_JOURNAL);
@@ -22,7 +28,6 @@ const JournalList = ({
         variables: { journalId: id },
       });
 
-      // Update the journalList state by removing the deleted entry
       setJournalList(journalList.filter((journal) => journal._id !== id));
     } catch (error) {
       console.error('Failed to delete journal entry', error);
@@ -54,11 +59,9 @@ const JournalList = ({
 
       setEditingJournalId(null);
 
-      // Set the state to show the success message
       setShowSuccessMessage(true);
 
       setTimeout(() => {
-        // Reset the state to hide the success message after 3 seconds
         setShowSuccessMessage(false);
       }, 3000);
     } catch (error) {
@@ -78,7 +81,7 @@ const JournalList = ({
       {showTitle && <h3>{title}</h3>}
       {journalList.map((journal) => (
         <div key={journal._id} className="card mb-3">
-          <h4 className=" bg-primary bg-primary p-2 m-0">
+          <h4 className="bg-primary bg-primary p-2 m-0">
             {showUsername ? (
               <Link
                 className="bg-primary"
@@ -113,7 +116,7 @@ const JournalList = ({
             />
           ) : (
             <button
-              className="btn btn-lg  m-2"
+              className="btn btn-lg m-2"
               onClick={() => handleEdit(journal._id)}
             >
               Edit
