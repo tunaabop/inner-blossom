@@ -64,23 +64,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addComment: async (parent, { journalId, commentText }, context) => {
-      if (context.user) {
-        return Journal.findOneAndUpdate(
-          { _id: journalId },
-          {
-            $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    
     removeJournal: async (parent, { journalId }, context) => {
       if (context.user) {
         const journal = await Journal.findOneAndDelete({
@@ -94,23 +78,6 @@ const resolvers = {
         );
 
         return journal;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    removeComment: async (parent, { journalId, commentId }, context) => {
-      if (context.user) {
-        return Journal.findOneAndUpdate(
-          { _id: journalId },
-          {
-            $pull: {
-              comments: {
-                _id: commentId,
-                commentAuthor: context.user.username,
-              },
-            },
-          },
-          { new: true }
-        );
       }
       throw new AuthenticationError('You need to be logged in!');
     },

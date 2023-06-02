@@ -4,9 +4,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import CommentList from '../components/CommentList';
-import CommentForm from '../components/CommentForm';
-
 import { QUERY_SINGLE_JOURNAL} from '../utils/queries';
 
 const SingleJournal = () => {
@@ -43,13 +40,6 @@ const SingleJournal = () => {
         >
           {journal.journalText}
         </blockquote>
-      </div>
-
-      <div className="my-5">
-        <CommentList comments={journal.comments} />
-      </div>
-      <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm journalId={journal._id} />
       </div>
     </div>
   );
