@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { ADD_TO_FAVORITES } from "../../utils/mutations";
+import {QUERY_ME} from "../../utils/queries";
 
 const AffirmationContent = () => {
   const [quote, setQuote] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [addToFavorites] = useMutation(ADD_TO_FAVORITES);
-
+const {loading, data} = useQuery(QUERY_ME);
   const fetchData = async () => {
     try {
       const response = await fetch("/api/random");
@@ -22,15 +23,11 @@ const AffirmationContent = () => {
 
   useEffect(() => {
     fetchData();
-    fetch("/api/favorites")
-      .then((response) => response.json())
-      .then((data) => {
-        setFavorites(data);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch favorites", error);
-      });
-  }, []);
+    if (data) {
+      console.log(data);
+      setFavorites(data.me.favorites);
+    }
+  }, [data]);
 
   const handleFavoriteSubmit = async () => {
     try {
@@ -56,7 +53,7 @@ const AffirmationContent = () => {
     })
       .then((response) => response.json())
       .then(() => {
-        const updatedFavorites = favorites.filter((q) => q.q !== quote.q);
+        const updatedFavorites = favorites.filter((q) => q.quote !== quote.quote);
         setFavorites(updatedFavorites);
       })
       .catch((error) => {

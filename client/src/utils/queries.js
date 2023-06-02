@@ -11,6 +11,11 @@ export const QUERY_USER = gql`
         journalText
         createdAt
       }
+      favorites {
+        _id
+        quote
+        author
+      }
     }
   }
 `;
@@ -71,6 +76,11 @@ export const QUERY_ME = gql`
         journalText
         journalAuthor
         createdAt
+      }
+      favorites {
+        _id
+        quote
+        author
       }
     }
   }
