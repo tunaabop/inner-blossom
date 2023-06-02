@@ -12,7 +12,7 @@ function getRandomImage() {
     images.push(...usedImages);
     usedImages.length = 0;
   }
-//
+//loop to  cycle images
   const index = Math.floor(Math.random() * images.length);
   const image = images[index];
   images.splice(index, 1);
@@ -25,7 +25,7 @@ function YogaContent() {
 
   function loadImage() {
     const image = getRandomImage();
-    setImageSrc(require(`./images${image}`).default);
+    setImageSrc(require(`../../images${image}`).default);
   }
 //button
   return (

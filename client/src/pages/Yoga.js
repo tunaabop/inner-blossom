@@ -1,11 +1,11 @@
 import React from 'react';
-import ImageContainer from '../components/YogaContent/index';
+import YogaContent from '../components/YogaContent/index';
 
 const Yoga = () => {
   return (
     <div>
       <h1>Yoga Page</h1>
-      <ImageContainer />
+      <YogaContent />
     </div>
   );
 };
