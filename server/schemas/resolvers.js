@@ -126,8 +126,18 @@ const resolvers = {
         );
       }
       throw new AuthenticationError('You need to be logged in!');
-    }
-    
+    },
+    addToFavorites: async (parent, { quote }, context) => {
+      console.log(quote);
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { favorites: quote } },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }    
   },
 };
 

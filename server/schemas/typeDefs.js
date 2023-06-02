@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
@@ -7,6 +7,13 @@ const typeDefs = gql`
     email: String
     password: String
     journals: [Journal]!
+    favorites: [Favorites]
+  }
+
+  type Favorites {
+    _id: ID
+    quote: String
+    author: String
   }
 
   type Journal {
@@ -29,6 +36,11 @@ const typeDefs = gql`
     user: User
   }
 
+  input QuoteInput {
+    author: String
+    quote: String
+  }
+
   type Query {
     users: [User]
     user(username: String!): User
@@ -45,6 +57,7 @@ const typeDefs = gql`
     removeJournal(journalId: ID!): Journal
     removeComment(journalId: ID!, commentId: ID!): Journal
     updateJournal(journalId: ID!, journalText: String!): Journal
+    addToFavorites(quote: QuoteInput!): User
   }
 `;
 
