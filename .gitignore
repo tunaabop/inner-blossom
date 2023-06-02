@@ -7,10 +7,8 @@ node_modules/
 settings.json
 
 # package-log.json
-package-lock.json
+*package-lock.json
 
-
-.env
 
 # .env file
 .env

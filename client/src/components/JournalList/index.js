@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import JournalEditForm from '../JournalEditForm';
-import { REMOVE_JOURNAL, UPDATE_JOURNAL } from '../../utils/mutations';
-import { QUERY_JOURNALS, QUERY_ME } from '../../utils/queries';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import JournalEditForm from "../JournalEditForm";
+import { REMOVE_JOURNAL, UPDATE_JOURNAL } from "../../utils/mutations";
+import { QUERY_JOURNALS, QUERY_ME } from "../../utils/queries";
 
 const JournalList = ({
   journals,
@@ -11,7 +11,6 @@ const JournalList = ({
   showTitle = true,
   showUsername = true,
 }) => {
-  
   const [journalList, setJournalList] = useState(journals);
   useEffect(() => {
     setJournalList(journals);
@@ -21,21 +20,35 @@ const JournalList = ({
   const [deleteJournal] = useMutation(REMOVE_JOURNAL);
   const [updateJournal] = useMutation(UPDATE_JOURNAL);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  
+
   const handleDelete = async (id) => {
-    
     try {
       await deleteJournal({
         variables: { journalId: id },
+        update: (cache) => {
+          // const { me } = cache.readQuery({ query: QUERY_ME });
+
+          // cache.writeQuery({
+          //   query: QUERY_ME,
+          //   data: {
+          //     me: {
+          //       ...me,
+          //       journals: me.journals.filter((journal) => journal._id !== id),
+          //     },
+          //   },
+          // });
+          const normalizedId = cache.identify({ id, __typename: "Journal" });
+          cache.evict({ id: normalizedId });
+          cache.gc();
+        },
       });
 
       setJournalList(journalList.filter((journal) => journal._id !== id));
     } catch (error) {
-      console.error('Failed to delete journal entry', error);
+      console.error("Failed to delete journal entry", error);
     }
   };
 
- 
   const handleEdit = (id) => {
     setEditingJournalId(id);
   };
@@ -67,20 +80,20 @@ const JournalList = ({
         setShowSuccessMessage(false);
       }, 3000);
     } catch (error) {
-      console.error('Failed to update journal entry', error);
+      console.error("Failed to update journal entry", error);
     }
   };
-
 
   if (!journalList.length) {
     return <h3>No Journal Entries Yet</h3>;
   }
-  
 
   return (
     <div>
       {showSuccessMessage && (
-        <div className="success-message">Journal entry updated successfully!</div>
+        <div className="success-message">
+          Journal entry updated successfully!
+        </div>
       )}
       {showTitle && <h3>{title}</h3>}
       {journalList.map((journal) => (
@@ -91,13 +104,13 @@ const JournalList = ({
                 className="bg-primary"
                 to={`/profiles/${journal.journalAuthor}`}
               >
-                <span style={{ fontSize: '1rem' }}>
+                <span style={{ fontSize: "1rem" }}>
                   Entry created on {journal.createdAt}
                 </span>
               </Link>
             ) : (
               <>
-                <span style={{ fontSize: '1rem' }}>
+                <span style={{ fontSize: "1rem" }}>
                   Entry created on {journal.createdAt}
                 </span>
               </>

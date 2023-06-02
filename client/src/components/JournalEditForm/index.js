@@ -1,23 +1,7 @@
-import React, { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
-import { QUERY_JOURNALS } from '../../utils/queries';
-const UPDATE_JOURNAL = gql`
-  mutation UpdateJournal($journalId: ID!, $journalText: String!) {
-    updateJournal(journalId: $journalId, journalText: $journalText) {
-      _id
-      journalText
-    }
-  }
-`;
-
-// const QUERY_JOURNALS = gql`
-//   query GetJournals {
-//     journals {
-//       _id
-//       journalText
-//     }
-//   }
-// `;
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
+import { UPDATE_JOURNAL } from "../../utils/mutations";
 
 const JournalEditForm = ({ journal, onCancel }) => {
   const [journalText, setJournalText] = useState(journal.journalText);
@@ -35,27 +19,25 @@ const JournalEditForm = ({ journal, onCancel }) => {
         },
         update: (cache, { data }) => {
           try {
-            console.log("cache: ", cache);
-            console.log("cache read query",cache.readQuery({ query: QUERY_JOURNALS }));
-            const { journals } = cache.readQuery({ query: QUERY_JOURNALS });
+            const { me } = cache.readQuery({ query: QUERY_ME });
             const updatedJournal = data.updateJournal;
-            const updatedJournals = journals.map((j) =>
+            const updatedJournals = me.journals.map((j) =>
               j._id === updatedJournal._id ? updatedJournal : j
             );
             cache.writeQuery({
-              query: QUERY_JOURNALS,
-              data: { journals: updatedJournals },
+              query: QUERY_ME,
+              data: { me: { ...me, journals: updatedJournals } },
             });
           } catch (error) {
             // Handle case when cache.readQuery returns null
-            console.error('Failed to read or update journal cache', error);
+            console.error("Failed to read or update journal cache", error);
           }
         },
       });
 
       onCancel();
     } catch (error) {
-      console.error('Failed to update journal entry', error);
+      console.error("Failed to update journal entry", error);
     }
   };
 
@@ -81,7 +63,11 @@ const JournalEditForm = ({ journal, onCancel }) => {
         <button className="btn btn-primary" type="submit">
           Save Changes
         </button>
-        <button className="btn btn-secondary ml-2" type="button" onClick={onCancel}>
+        <button
+          className="btn btn-secondary ml-2"
+          type="button"
+          onClick={onCancel}
+        >
           Cancel
         </button>
       </form>
