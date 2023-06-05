@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
   query user($username: String!) {
@@ -9,6 +9,7 @@ export const QUERY_USER = gql`
       journals {
         _id
         journalText
+        journalAuthor
         createdAt
       }
       favorites {
@@ -43,7 +44,7 @@ export const QUERY_SINGLE_JOURNAL = gql`
 `;
 
 export const QUERY_ME_BASIC = gql`
-  { 
+  {
     me {
       _id
       username
@@ -57,7 +58,6 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
-
 
 export const QUERY_ME = gql`
   query me {
