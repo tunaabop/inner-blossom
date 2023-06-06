@@ -12,7 +12,7 @@ const AffirmationContent = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/random");
+      const response = await fetch("https://zenquotes.io/api/random");
       const data = await response.json();
       console.log(data[0]);
       setQuote(data[0]);
@@ -44,7 +44,7 @@ const AffirmationContent = () => {
   };
 
   const removeFromFavorites = (quote) => {
-    fetch("/api/favorites", {
+    fetch("https://zenquotes.io/api/favorites", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -118,9 +118,7 @@ const AffirmationContent = () => {
 
       {Auth.loggedIn() && (
         <div>
-          <h4 className="card-header-title  p-2 m-0">
-            Your favorited quotes:
-          </h4>
+          <h4 className="card-header-title  p-2 m-0">Your favorited quotes:</h4>
 
           {favorites.map((quote, index) => {
             return (
@@ -144,7 +142,10 @@ const AffirmationContent = () => {
             );
           })}
           <p>
-            - Inspirational quotes provided by{" "} <a href="https://zenquotes.io/" target="_blank"> ZenQuotes API
+            - Inspirational quotes provided by{" "}
+            <a href="https://zenquotes.io/" target="_blank">
+              {" "}
+              ZenQuotes API
             </a>
           </p>
         </div>
