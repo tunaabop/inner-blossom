@@ -12,7 +12,7 @@ const AffirmationContent = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const fetchData = async () => {
     try {
-      const response = await fetch("https://zenquotes.io/api/random");
+      const response = await fetch("/api/random");
       const data = await response.json();
       console.log(data[0]);
       setQuote(data[0]);
@@ -44,7 +44,7 @@ const AffirmationContent = () => {
   };
 
   const removeFromFavorites = (quote) => {
-    fetch("https://zenquotes.io/api/favorites", {
+    fetch("/api/favorites", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
