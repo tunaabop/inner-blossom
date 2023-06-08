@@ -16,7 +16,7 @@ As someone who seeks inspiration and from quotes I want to receive **affirmation
 As someone who needs to organize my thoughts, I want a place to write **reflections** so that I can clear my mind and de-stress.
 As someone who wants to prioritize my mental health, I want to have the option to **customize** specific features to show and use on this app.
 
-## Link to our [Heroku App]([https://inner-blossom.herokuapp.com/](https://inner-blossom.herokuapp.com/))
+## Link to our [Heroku App](https://inner-blossom.herokuapp.com/)
 
 ## App Screenshots
 ![Image showing 1 out of 4 screenshots](./screenshots/inner_blossom_home.png)
