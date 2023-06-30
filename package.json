@@ -2,10 +2,6 @@
   "name": "programming-thoughts",
   "version": "1.0.0",
   "description": "",
-  "engines":{
-    "node": "18.14.0",
-    "npm" : "9.6.3"
-  },
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
