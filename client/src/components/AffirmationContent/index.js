@@ -118,9 +118,7 @@ const AffirmationContent = () => {
 
       {Auth.loggedIn() && (
         <div>
-          <h4 className="card-header-title  p-2 m-0">
-            Your favorited quotes:
-          </h4>
+          <h4 className="card-header-title  p-2 m-0">Your favorited quotes:</h4>
 
           {favorites.map((quote, index) => {
             return (
@@ -144,7 +142,10 @@ const AffirmationContent = () => {
             );
           })}
           <p>
-            - Inspirational quotes provided by{" "} <a href="https://zenquotes.io/" target="_blank"> ZenQuotes API
+            - Inspirational quotes provided by{" "}
+            <a href="https://zenquotes.io/" target="_blank">
+              {" "}
+              ZenQuotes API
             </a>
           </p>
         </div>
