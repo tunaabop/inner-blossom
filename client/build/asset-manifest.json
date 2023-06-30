@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/static/css/main.14a11779.css",
+    "main.js": "/static/js/main.f1d8dd61.js",
+    "static/js/377.ccfaec47.chunk.js": "/static/js/377.ccfaec47.chunk.js",
+    "static/media/blossom.png": "/static/media/blossom.69f2b09a4062fcdfc5c4.png",
+    "static/media/supine-spinal-twist.PNG": "/static/media/supine-spinal-twist.3648026225e5b3c04ef6.PNG",
+    "static/media/childs-pose.PNG": "/static/media/childs-pose.e5d6b628dbc29ad8fc00.PNG",
+    "static/media/cobblers-pose.PNG": "/static/media/cobblers-pose.a157c0429d0f17fe3c56.PNG",
+    "static/media/half-lord-of-the-fishes.PNG": "/static/media/half-lord-of-the-fishes.9ea440b896b3a416fa28.PNG",
+    "static/media/plank-pose.PNG": "/static/media/plank-pose.43c35f49793e2f4ce80b.PNG",
+    "static/media/Downward-dog.PNG": "/static/media/Downward-dog.b806995b6f43b8ecb884.PNG",
+    "static/media/head-to-knee-pose.PNG": "/static/media/head-to-knee-pose.703820544526a6194ba7.PNG",
+    "static/media/happy-baby.PNG": "/static/media/happy-baby.448a0bf8dec1b766517b.PNG",
+    "static/media/wide-angle-straddle.PNG": "/static/media/wide-angle-straddle.dfc7bebd17b47aa4c046.PNG",
+    "static/media/staff-pose.PNG": "/static/media/staff-pose.ba9ce5fd64dbc019f7ca.PNG",
+    "static/media/seated-forward-bend.PNG": "/static/media/seated-forward-bend.d7081c3aeb90ab06ebbc.PNG",
+    "static/media/cobra-pose.PNG": "/static/media/cobra-pose.66b3a5dab94a50e8f327.PNG",
+    "static/media/half-forward-bend.PNG": "/static/media/half-forward-bend.b3645708836f2d0ac76b.PNG",
+    "static/media/corpse-pose.PNG": "/static/media/corpse-pose.b21b167e93594a7a45b2.PNG",
+    "static/media/cat-cow.PNG": "/static/media/cat-cow.74b02292595235c27a76.PNG",
+    "static/media/knee-chest-and-chin-pose.PNG": "/static/media/knee-chest-and-chin-pose.48142ef62b4de682f8ae.PNG",
+    "static/media/mountain-pose.PNG": "/static/media/mountain-pose.ad650be7b1383dc526a3.PNG",
+    "static/media/warrior1.PNG": "/static/media/warrior1.6d9010576ad5ac15190b.PNG",
+    "static/media/tree-pose.PNG": "/static/media/tree-pose.9ac9e85304065391ff14.PNG",
+    "index.html": "/index.html",
+    "main.14a11779.css.map": "/static/css/main.14a11779.css.map",
+    "main.f1d8dd61.js.map": "/static/js/main.f1d8dd61.js.map",
+    "377.ccfaec47.chunk.js.map": "/static/js/377.ccfaec47.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.14a11779.css",
+    "static/js/main.f1d8dd61.js"
+  ]
+}
